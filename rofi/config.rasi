@@ -1,0 +1,110 @@
+@theme "/dev/null"
+
+configuration {
+    display-drun:        ""; 
+    drun-display-format: "{icon} {name}";
+    show-icons:          true;
+    icon-theme:          "Papirus"; 
+    hover-select:        true;
+    me-select-entry:     "";
+    me-accept-entry:     "MousePrimary";
+}
+
+* {
+    /* --- macOS Spotlight 暗色模式变量 --- */
+    bg-base:          #1e1e1eB3; 
+    border-color:     #ffffff26; 
+    text-color:       #ffffff;   
+    text-muted:       #ffffff80; 
+    mac-blue:         #0a84ff;   
+
+    background-color: transparent;
+    font: "SF Pro Text 12", "Sans 12"; /* 基础字体调小 */
+}
+
+window {
+    width:            480px;      /* 宽度大幅度缩小，更紧凑精致 */
+    background-color: @bg-base;
+    border:           1px;        
+    border-color:     @border-color;
+    border-radius:    10px;       /* 配合小尺寸，圆角稍微收敛一点 */
+    padding:          0px;        
+}
+
+mainbox {
+    spacing:  0px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    padding:          12px 16px;  /* 输入框内边距变小 */
+    spacing:          12px;
+    children:         [ prompt, entry ];
+    border:           0px 0px 1px 0px; /* 极细底边框保留 */
+    border-color:     @border-color;
+}
+
+prompt {
+    text-color:     @text-muted;
+    font:           "Sans 14";    /* 放大镜变小 */
+    vertical-align: 0.5;
+}
+
+entry {
+    text-color:        @text-color;
+    placeholder:       "Search..."; /* 提示词变精简 */
+    placeholder-color: @text-muted;
+    vertical-align:    0.5;
+    font:              "SF Pro Text 14", "Sans 14"; /* 输入字体变小 */
+    cursor:            text;
+}
+
+listview {
+    padding:       8px;          /* 列表的内边距减小 */
+    lines:         6;            /* 最多显示 6 行，保持紧凑 */
+    columns:       1;
+    
+    /* --- 核心魔法：不输入时不显示列表 --- */
+    fixed-height:  false; 
+    /* ------------------------------------ */
+    
+    spacing:       2px;
+    border:        0px;
+}
+
+element {
+    padding:       6px 10px;     /* 条目变得更扁平紧凑 */
+    spacing:       12px;
+    border-radius: 6px;          
+    cursor:        pointer;
+}
+
+element-icon {
+    size:             24px;      /* 图标缩小到 24px */
+    background-color: transparent;
+    cursor:           inherit;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    cursor:           inherit;
+}
+
+/* --- 状态控制 --- */
+
+element normal.normal, element alternate.normal {
+    background-color: transparent;
+    text-color:       @text-color;
+}
+
+element selected.normal {
+    background-color: @mac-blue; /* macOS 蓝 */
+    text-color:       #ffffff;
+}
+
+/* 保证选中时内容依然透明 */
+element selected element-icon, element selected element-text {
+    background-color: transparent;
+}

@@ -1,0 +1,78 @@
+@theme "/dev/null"
+
+configuration {
+    show-icons:      false;
+    /* 交互设置：悬停即选中，点击即执行 */
+    hover-select:    true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+* {
+    /* 颜色配置 */
+    bg: #00000088;       /* 背景加深一点，对比更明显 */
+    fg: #ffffff;
+    accent: #ffffff;
+    select-bg: #ffffff22;
+    
+    font: "JetBrainsMono Nerd Font 100";
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    fullscreen:       true;
+    background-color: @bg;
+    /* * 这里的 padding 是为了把中间那一行“挤”在正中间 
+     * 上下 35% 的高度留白，左右留白由 listview 自动居中处理
+     */
+    padding:          35% 0%; 
+    children:         [ mainbox ];
+}
+
+mainbox {
+    children:         [ listview ];
+    background-color: transparent;
+}
+
+listview {
+    /* 核心改变：不分列，而是横向排列 */
+    layout:           horizontal;
+    
+    /* * 这里的 spacing 是图标之间的空隙
+     * 既然用了 horizontal，我们不需要 columns 属性了
+     */
+    spacing:          60px;
+    lines:            5;  /* 这里指总共有5个元素 */
+    
+    /* 居中大法 */
+    margin:           0px calc( 50% - 900px ); /* 动态计算左右边距以居中 (5个*300px + 间隙)/2 估算 */
+    fixed-height:     true;
+}
+
+element {
+    orientation:      vertical;
+    width:            280px; 
+    
+    /* 通过上下 padding 把高度撑起来，形成正方形 */
+    padding:          60px 0px; 
+    
+    border-radius:    40px;
+    border:           4px;
+    border-color:     transparent;
+    cursor:           pointer;
+}
+
+element-text {
+    font:            "JetBrainsMono Nerd Font 100";
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+/* 选中状态：白框 + 微微发亮 */
+element selected {
+    background-color: @select-bg;
+    border-color:     @accent;
+    text-color:       @accent;
+    border-radius:    40px;
+}

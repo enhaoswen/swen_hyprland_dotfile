@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# 定义图标 (需要安装 Nerd Fonts)
+lock=""
+logout="󰍃"
+suspend="󰤄"
+reboot="󰜉"
+shutdown=""
+
+options="$lock\n$logout\n$suspend\n$reboot\n$shutdown"
+
+# 运行 Rofi
+chosen="$(echo -e "$options" | rofi -dmenu -theme ~/.config/rofi/config_powermanue.rasi -p "Power" -selected-row 2)"
+
+# 执行逻辑
+case $chosen in
+    $lock)
+        hyprlock # 或者 sw swaylock
+        ;;
+    $logout)
+        hyprctl dispatch exit
+        ;;
+    $suspend)
+        systemctl suspend
+        ;;
+    $reboot)
+        systemctl reboot
+        ;;
+    $shutdown)
+        systemctl poweroff
+        ;;
+esac
