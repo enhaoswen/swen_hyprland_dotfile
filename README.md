@@ -1,4 +1,4 @@
-# Swen's Hyprland Dotfiles
+# My Hyprland Dotfiles
 
 > ⚠️ I do not recommend copying this repository directly.
 > Please review and adapt the configuration to fit your own system to avoid potential issues.
