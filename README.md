@@ -67,7 +67,7 @@ This repository is divided into **4 main parts**:
 
 ####  Contents
 
-* Hyprland configuration
+* Hyprland configuration (both .lua and .conf, please only take one)
 * Hypridle configuration
 * Hyprlock configuration
 * Hyprpaper configuration
